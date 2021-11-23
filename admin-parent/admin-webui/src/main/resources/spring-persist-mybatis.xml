@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!-- 加载外部属性文件-->
+    <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
+
+    <!-- 配置数据源 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+         <property name="username" value="${jdbc.user}"></property>
+         <property name="password" value="${jdbc.password}"></property>
+         <property name="url" value="${jdbc.url}"></property>
+         <property name="driverClassName" value="${jdbc.driver}"></property>
+    </bean>
+
+    <!-- 配置sqlSessionFactoryBean整合MyBatis -->
+    <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+         <!--全局配置文件的位置 -->
+         <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+        <!--mapper文件的位置-->
+         <property name="mapperLocations" value="classpath:mybatis/mapper/*Mapper.xml"></property>
+        <!--装配数据源-->
+        <property name="dataSource" ref="dataSource"></property>
+
+    <!-- 配置 MyBatis 的插件 -->
+        <property name="plugins">
+            <array><!-- 配置 PageHelper -->
+                <bean class="com.github.pagehelper.PageHelper">
+                    <!-- 配置相关属性 -->
+                    <property name="properties">
+                        <props>
+                            <!-- 配置数据库方言，告诉 PageHelper 当前使用的具体数据库， -->
+                            <!-- 让 PageHelper 可以根据当前数据库生成对应的分页 SQL 语 句 -->
+                            <prop key="dialect">mysql</prop>
+                            <!-- 配置页码的合理化修正 -->
+                            <!-- 让 PageHelper 自动把浏览器传来的 PageNum 修正到 0~总页 数范围 -->
+                            <prop key="reasonable">true</prop>
+                        </props>
+                    </property>
+                </bean>
+            </array>
+        </property>
+    </bean>
+
+
+    <!-- 扫描mapper接口所在的包-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+       <property name="basePackage" value="com.yyl.crowd.mapper"></property>
+    </bean>
+
+
+
+
+
+</beans>

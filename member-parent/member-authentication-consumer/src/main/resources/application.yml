@@ -1,0 +1,28 @@
+server:
+  port: 4000
+spring:
+  application:
+    name: yyl-crowd-auth
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  redis:
+    host: 192.168.137.136
+  session:
+    store-type: redis
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka
+short:
+  message:
+    host: https://dfsns.market.alicloudapi.com
+    appCode: 8f7046f4eee249638dc949b0496e2acb
+    method: POST
+    path: /data/send_sms
+    content: code:5201314,expire_at:5
+    template_id: TPL_0001
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000

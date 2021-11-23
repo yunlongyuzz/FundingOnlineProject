@@ -1,0 +1,23 @@
+server:
+  port: 5000
+spring:
+  application:
+    name: yyl-crowd-project
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  redis:
+    host: 192.168.137.136
+  session:
+    store-type: redis
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka
+aliyun:
+  oss:
+    access-key-id: LTAI5tFEuEwyA4yqQbUMmW3B
+    access-key-secret: H0aDMlig5jDtLVuUb03tu8xBsiQdlt
+    bucket-domain: http://yyl-crowd.oss-cn-shanghai.aliyuncs.com
+    bucket-name: yyl-crowd
+    end-point: http://oss-cn-shanghai.aliyuncs.com

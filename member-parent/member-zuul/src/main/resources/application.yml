@@ -1,0 +1,32 @@
+server:
+  port: 80
+spring:
+  application:
+    name: yyl-crowd-zuul
+  redis:
+    host: 192.168.137.136
+  session:
+    store-type: redis
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka
+zuul:
+  ignored-services: "*"
+  sensitive-headers: "*"
+  routes:
+    crowd-portal:
+      service-id: yyl-crowd-auth
+      path: /**
+    crowd-project:
+      service-id: yyl-crowd-project
+      path: /project/**
+    crowd-order:
+      service-id: yyl-crowd-order
+      path: /order/**
+    crowd-pay:
+      service-id: yyl-crowd-pay
+      path: /pay/**
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
