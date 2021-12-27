@@ -16,8 +16,8 @@ eureka:
       defaultZone: http://localhost:1000/eureka
 aliyun:
   oss:
-    access-key-id: LTAI5tFEuEwyA4yqQbUMmW3B
-    access-key-secret: H0aDMlig5jDtLVuUb03tu8xBsiQdlt
+    access-key-id: 
+    access-key-secret: 
     bucket-domain: http://yyl-crowd.oss-cn-shanghai.aliyuncs.com
     bucket-name: yyl-crowd
     end-point: http://oss-cn-shanghai.aliyuncs.com
