@@ -18,6 +18,6 @@ aliyun:
   oss:
     access-key-id: 
     access-key-secret: 
-    bucket-domain: http://yyl-crowd.oss-cn-shanghai.aliyuncs.com
-    bucket-name: yyl-crowd
-    end-point: http://oss-cn-shanghai.aliyuncs.com
+    bucket-domain: 
+    bucket-name: 
+    end-point: 
